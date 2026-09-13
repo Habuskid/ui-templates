@@ -1,0 +1,1 @@
+{"name":"ui-reference-library","private":true,"type":"module","scripts":{"ingest":"node scripts/ingest.js"},"dependencies":{"node-vibrant":"^4.0.3"}}

@@ -1,0 +1,24 @@
+name: Ingest saved pin
+on:
+  issues:
+    types: [labeled]
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: ui-library-ingest
+  cancel-in-progress: false
+jobs:
+  ingest:
+    if: github.event.issue.pull_request == null && github.event.label.name == 'save-pin'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - run: npm install --ignore-scripts
+      - run: node scripts/ingest.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.UI_LIBRARY_TOKEN || github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          REPOSITORY: ${{ github.repository }}

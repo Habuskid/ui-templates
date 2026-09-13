@@ -1,7 +1,7 @@
 name: Ingest saved pin
 on:
   issues:
-    types: [labeled]
+    types: [opened, labeled]
 permissions:
   contents: write
   issues: write
@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   ingest:
-    if: github.event.issue.pull_request == null && github.event.label.name == 'save-pin'
+    if: github.event.issue.pull_request == null && contains(github.event.issue.labels.*.name, 'save-pin')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

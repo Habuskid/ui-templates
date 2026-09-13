@@ -14,6 +14,8 @@ function meta(html,name){const m=html.match(new RegExp('<meta[^>]+(?:property|na
 
 const issue=await json(api+'/issues/'+issueNumber);
 const source_url=field(issue.body||'','pin_url'), note=field(issue.body||'','note'), itemTags=cleanTags(field(issue.body||'','tags'));
+const existing=JSON.parse(await fs.readFile(path.resolve('data/library.json'),'utf8'));
+if(existing.some(x=>x.source_url===source_url)){await closeIssue('This Pinterest pin is already saved in the library.');process.exit(0)}
 if(!source_url){await closeIssue('No pin_url was found.');process.exit(1)}
 const o=await json('https://www.pinterest.com/oembed.json?url='+encodeURIComponent(source_url));
 const id=Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8), video=String(o.type).toLowerCase()==='video';

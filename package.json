@@ -1,1 +1,1 @@
-{"name":"ui-reference-library","private":true,"type":"module","scripts":{"ingest":"node scripts/ingest.js"},"dependencies":{"node-vibrant":"^4.0.3"}}
+{"name":"ui-reference-library","private":true,"scripts":{"dev":"next dev","build":"next build","start":"next start"},"dependencies":{"@supabase/ssr":"latest","@supabase/supabase-js":"latest","next":"latest","node-vibrant":"latest","react":"latest","react-dom":"latest"},"devDependencies":{"@types/node":"latest","@types/react":"latest","@types/react-dom":"latest","typescript":"latest"}}

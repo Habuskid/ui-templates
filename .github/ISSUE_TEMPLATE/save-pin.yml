@@ -1,0 +1,21 @@
+name: Save Pinterest pin
+description: Add a UI reference to the library
+title: "Save pin: "
+labels: [save-pin]
+body:
+  - type: input
+    id: pin_url
+    attributes:
+      label: Pinterest pin URL
+      placeholder: https://www.pinterest.com/pin/...
+    validations: {required: true}
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: Comma-separated tags
+  - type: textarea
+    id: note
+    attributes:
+      label: Design note
+      description: What should you remember about this reference?
